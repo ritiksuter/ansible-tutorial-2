@@ -1,0 +1,21 @@
+---
+# tasks file for tut1
+
+- name: Install apache2
+  become: true
+  apt:
+    name: apache2
+    state: present
+
+- name: Place custom HTML file
+  become: true
+  copy:
+    src: index.txt
+    dest: /var/www/html/index.html
+
+- name: Start the service
+  become: true
+  service:
+    name: apache2
+    state: started
+    enabled: true
